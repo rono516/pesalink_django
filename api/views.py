@@ -15,44 +15,99 @@ def index(request):
     response = requests.post(token_url,data=payload)
     return JsonResponse(response.json())
 
+def make_payment(request):
+    access_token = ""
+    url = "https://api.connect.stanbicbank.co.ke/api/sandbox/pesalink-payments/"
 
-{
-  "originatorAccount": {
-    "identification": {
-      "mobileNumber": "254737696956"
+    payload = {
+    "originatorAccount": {
+        "identification": {
+        "mobileNumber": "254737696956"
+        }
+    },
+    "requestedExecutionDate": "2021-10-27",
+    "sendMoneyTo": "ACCOUNT.NUMBER",
+    "dbsReferenceId": "98989271771176942",
+    "txnNarrative": "TESTPESALINK",
+    "callBackUrl": "https://clientdomain.com/client/Callback",
+    "transferTransactionInformation": {
+        "instructedAmount": {
+        "amount": "500",
+        "currencyCode": "KES"
+        },
+        "counterpartyAccount": {
+        "identification": {
+            "recipientMobileNo": "25472XXXXXXXX",
+            "recipientBankAcctNo": "01008747142",
+            "recipientBankCode": "07000"
+        }
+        },
+        "counterparty": {
+        "name": "HEZBON",
+        "postalAddress": {
+            "addressLine": "KENYA",
+            "postCode": "1100 ZZ",
+            "town": "Nairobi",
+            "country": "KE"
+        }
+        },
+        "remittanceInformation": {
+        "type": "FEES PAYMENTS",
+        "content": "SALARY"
+        },
+        "endToEndIdentification": "5e1a3da132cc"
     }
-  },
-  "requestedExecutionDate": "2021-10-27",
-  "sendMoneyTo": "ACCOUNT.NUMBER",
-  "dbsReferenceId": "98989271771176942",
-  "txnNarrative": "TESTPESALINK",
-  "callBackUrl": "https://clientdomain.com/client/Callback",
-  "transferTransactionInformation": {
-    "instructedAmount": {
-      "amount": "500",
-      "currencyCode": "KES"
-    },
-    "counterpartyAccount": {
-      "identification": {
-        "recipientMobileNo": "254792009556",
-        "recipientBankAcctNo": "01008747142",
-        "recipientBankCode": "07000"
-      }
-    },
-    "counterparty": {
-      "name": "HEZBON",
-      "postalAddress": {
-        "addressLine": "KENYA",
-        "postCode": "1100 ZZ",
-        "town": "Nairobi",
-        "country": "KE"
-      }
-    },
-    "remittanceInformation": {
-      "type": "FEES PAYMENTS",
-      "content": "SALARY"
-    },
-    "endToEndIdentification": "5e1a3da132cc"
-  }
-}
+    }
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "content-type": "application/json",
+        "accept": "application/json"
+    }
 
+    response = requests.post(url, data=payload, headers=headers)
+    return JsonResponse(response.json())
+
+
+    # print(response.text)
+
+# {
+#   "originatorAccount": {
+#     "identification": {
+#       "mobileNumber": "254737696956"
+#     }
+#   },
+#   "requestedExecutionDate": "2021-10-27",
+#   "sendMoneyTo": "ACCOUNT.NUMBER",
+#   "dbsReferenceId": "98989271771176942",
+#   "txnNarrative": "TESTPESALINK",
+#   "callBackUrl": "https://clientdomain.com/client/Callback",
+#   "transferTransactionInformation": {
+#     "instructedAmount": {
+#       "amount": "500",
+#       "currencyCode": "KES"
+#     },
+#     "counterpartyAccount": {
+#       "identification": {
+#         "recipientMobileNo": "254792009556",
+#         "recipientBankAcctNo": "01008747142",
+#         "recipientBankCode": "07000"
+#       }
+#     },
+#     "counterparty": {
+#       "name": "HEZBON",
+#       "postalAddress": {
+#         "addressLine": "KENYA",
+#         "postCode": "1100 ZZ",
+#         "town": "Nairobi",
+#         "country": "KE"
+#       }
+#     },
+#     "remittanceInformation": {
+#       "type": "FEES PAYMENTS",
+#       "content": "SALARY"
+#     },
+#     "endToEndIdentification": "5e1a3da132cc"
+#   }
+# }
+
+# ss
