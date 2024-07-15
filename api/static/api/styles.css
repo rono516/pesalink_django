@@ -1,6 +1,6 @@
 body{
-    /* background-color: black;
-    color: white; */
+    /* background-color: black; */
+    /* color: white; */
     margin: 0;
 }
 
@@ -16,5 +16,12 @@ body{
     padding-left: 30px;
 }
 .payment_item{
-    /* here */
+    /* color: red; */
+    /* color: black; */
+    /* margin-top: 30px; */
+}
+.payment_item a{
+    text-decoration: none;
+    /* color: red; */
+    color: black;
 }
