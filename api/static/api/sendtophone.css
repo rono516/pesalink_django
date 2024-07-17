@@ -15,7 +15,7 @@ body{
 .sendtophone_payment_div a{
     text-decoration: none;
     color: black;
-    
+
 }
 .send_money_btn{
     background-color: #23074d;
@@ -27,3 +27,8 @@ body{
     font-weight: bold;
     font-size: 15px;
 }
+@media only screen and (max-width: 768px) {
+    .sendtophone_payment_div{
+        flex-direction: column;
+    }
+  }

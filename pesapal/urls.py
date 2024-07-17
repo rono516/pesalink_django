@@ -21,6 +21,7 @@ from api import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("sendtophone/", views.sendtophone, name="sendtophone"),
+    path("sendtoaccount/", views.sendtoaccount, name="sendtoaccount"),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls"))
 ]

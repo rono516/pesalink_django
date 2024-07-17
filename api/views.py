@@ -43,10 +43,14 @@ scope = "payments"
 # 31ed5023ca172de01eb8fdd71c3f54b2 key
 # 4193aac9e0ac9afd300ac4c40f2b4b29 secret
 def index(request):
-    return render(request, "api/index.html")
+  return render(request, "api/index.html")
 def sendtophone(request):
-    return render(request, "api/sendtophone.html")
+  return render(request, "api/sendtophone.html")
+def sendtoaccount(request):
+  return render(request, "api/sendtoaccount.html")
+
 def auth_token(request):
+
     payload = {
     'grant_type': 'client_credentials',
     'client_id': client_id,
