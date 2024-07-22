@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 import requests
 from django.shortcuts import render
-client_id = "31ed5023ca172de01eb8fdd71c3f54b2"
-client_secret = "4193aac9e0ac9afd300ac4c40f2b4b29"
+client_id = "8721eba833943ccd29d6e74fb0bd937f"
+client_secret = "7e1c5c1b1c298d71f39d49a77e28aeb4"
 token_url = "https://api.connect.stanbicbank.co.ke/api/sandbox/auth/oauth2/token"
 scope = "payments"
 
@@ -17,13 +17,7 @@ scope = "payments"
 # 2002999211
 # 20029999411
 
-# Test Kba Credentials
-# 65ddb2bd197476634ded6d82ed5ed7fd key
-# 870f83bcd5a17167c0f642000e8c4346 secret
 
-# Test kba 2 Credentials
-# aa4f56e3ac57c12d9907802e9406570e key
-# 18c282236b27115e764f58ede7d1f8ae secret
 
 # Test kba 3 Credentials
 # 2003a03718f42899392cd70794570af5  key
@@ -42,6 +36,18 @@ scope = "payments"
 # 20029999211 - account number
 # 31ed5023ca172de01eb8fdd71c3f54b2 key
 # 4193aac9e0ac9afd300ac4c40f2b4b29 secret
+
+# test stanbic app Credentials
+# 0100010483659 - account number
+# 8721eba833943ccd29d6e74fb0bd937f key
+# 7e1c5c1b1c298d71f39d49a77e28aeb4 secret
+
+# testkba2 Credentials
+# 0100013845845 - account number
+# 709816b5a594cc46494ae0d004b2aad3 key
+# 3683cd5277fa0534d4db66f456ec8482 secret
+
+
 def index(request):
   return render(request, "api/index.html")
 def sendtophone(request):
@@ -59,7 +65,45 @@ def auth_token(request):
     }
     response = requests.post(token_url,data=payload)
     return JsonResponse(response.json())
-
+example_payment = {
+  "originatorAccount": {
+    "identification": {
+      "mobileNumber": "254737696956"
+    }
+  },
+  "requestedExecutionDate": "2021-10-27",
+  "sendMoneyTo": "ACCOUNT.NUMBER",
+  "dbsReferenceId": "98989271771176942",
+  "txnNarrative": "TESTPESALINK",
+  "callBackUrl": "https://clientdomain.com/client/Callback",
+  "transferTransactionInformation": {
+    "instructedAmount": {
+      "amount": "500",
+      "currencyCode": "KES"
+    },
+    "counterpartyAccount": {
+      "identification": {
+        # "recipientMobileNo": "25472XXXXXXXX",
+        "recipientBankAcctNo": "0100013845845",
+        "recipientBankCode": "31002"
+      }
+    },
+    "counterparty": {
+      "name": "HEZBON",
+      "postalAddress": {
+        "addressLine": "KENYA",
+        "postCode": "1100 ZZ",
+        "town": "Nairobi",
+        "country": "KE"
+      }
+    },
+    "remittanceInformation": {
+      "type": "FEES PAYMENTS",
+      "content": "SALARY"
+    },
+    "endToEndIdentification": "5e1a3da132cc"
+  }
+}
 # def make_payment(request):
 #     access_token = "AAIgNjVkZGIyYmQxOTc0NzY2MzRkZWQ2ZDgyZWQ1ZWQ3ZmROEIO1ym2AbDSCoavLrdBbSX4FUDF4mymJU5l2tdW1AvNwg2aYiiT5gyiVOGnbuZf0vZTPMQNROPT_lyKTuX9TBEVqTUvov-SWcXfvmGOqyAlqtK6jsvox4W2kbQU_fjo"
 #     url = "https://api.connect.stanbicbank.co.ke/api/sandbox/pesalink-payments/"
@@ -118,13 +162,12 @@ def auth_token(request):
 
 
 def make_payment(request):
-    access_token = "AAIgMzFlZDUwMjNjYTE3MmRlMDFlYjhmZGQ3MWMzZjU0YjK2gFqhCxbNSfKDyz9tbMmCkrJelGoX38z1n_RuxTBEbm1qJgtooYeGe0v-YIOillSYbKadEOuPLx4WQWDyGH9iwYWfAmEGQRkz7nD2NIWyNPQ-vkB1Tbm-WNK39eSwLQA"
+    access_token = "AAIgODcyMWViYTgzMzk0M2NjZDI5ZDZlNzRmYjBiZDkzN2Y72cgG99iGM_V3omLhvlUIWBosdfFBYvf9CfQo9WBDGxNl-kroiMp_cPIlPUrDM3Tu7P3YJinXA6oeEJjOmu8WfelYnfsKi4-aPehpSo8EmxvE9es_o4b4JUq3FsmjzKk"
     url = "https://api.connect.stanbicbank.co.ke/api/sandbox/pesalink-payments/"
 
     payload = {
         "originatorAccount": {
             "identification": {
-                # "mobileNumber": "254737696956"
                 "mobileNumber": "254721615262"
             }
         },
@@ -142,8 +185,8 @@ def make_payment(request):
                 "identification": {
                     # "recipientMobileNo": "254721615262",
                     # "recipientBankAcctNo": "01008747142",
-                    "recipientBankAcctNo": "0102999911",
-                    "recipientBankCode": "07000"
+                    "recipientBankAcctNo": "0100013845845",
+                    "recipientBankCode": "31002"
                 }
             },
             "counterparty": {
