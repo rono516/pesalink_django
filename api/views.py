@@ -84,7 +84,7 @@ example_payment = {
     "counterpartyAccount": {
       "identification": {
         # "recipientMobileNo": "25472XXXXXXXX",
-        "recipientBankAcctNo": "0100013845845",
+        "recipientBankAcctNo": "01040304011",
         "recipientBankCode": "31002"
       }
     },
@@ -162,7 +162,7 @@ example_payment = {
 
 
 def make_payment(request):
-    access_token = "AAIgODcyMWViYTgzMzk0M2NjZDI5ZDZlNzRmYjBiZDkzN2Y72cgG99iGM_V3omLhvlUIWBosdfFBYvf9CfQo9WBDGxNl-kroiMp_cPIlPUrDM3Tu7P3YJinXA6oeEJjOmu8WfelYnfsKi4-aPehpSo8EmxvE9es_o4b4JUq3FsmjzKk"
+    access_token = "AAIgODcyMWViYTgzMzk0M2NjZDI5ZDZlNzRmYjBiZDkzN2a5mvqLA5bO6Nw7LZMRuAcN1M0IE-SZckymloSJ0FLMysEvTP1t2MStG0QS420nDi4KJ1fvcfhVgTvWk1DmdPcj3f8H_K5_TJV3---95SxTVFi1DU7whEjI1UzXmRkYODw"
     url = "https://api.connect.stanbicbank.co.ke/api/sandbox/pesalink-payments/"
 
     payload = {
@@ -183,10 +183,11 @@ def make_payment(request):
             },
             "counterpartyAccount": {
                 "identification": {
+                    "recipientMobileNo": "254792009556",
                     # "recipientMobileNo": "254721615262",
                     # "recipientBankAcctNo": "01008747142",
-                    "recipientBankAcctNo": "0100013845845",
-                    "recipientBankCode": "31002"
+                    "recipientBankAcctNo": "1220179020894",
+                    "recipientBankCode": "68175"
                 }
             },
             "counterparty": {
