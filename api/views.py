@@ -55,7 +55,7 @@ def sendtophone(request):
 def sendtoaccount(request):
   return render(request, "api/sendtoaccount.html")
 
-def auth_token(request):
+def get_auth_token(request):
 
     payload = {
     'grant_type': 'client_credentials',
@@ -65,6 +65,7 @@ def auth_token(request):
     }
     response = requests.post(token_url,data=payload)
     return JsonResponse(response.json())
+
 example_payment = {
   "originatorAccount": {
     "identification": {
@@ -162,7 +163,7 @@ example_payment = {
 
 
 def make_payment(request):
-    access_token = "AAIgODcyMWViYTgzMzk0M2NjZDI5ZDZlNzRmYjBiZDkzN2a5mvqLA5bO6Nw7LZMRuAcN1M0IE-SZckymloSJ0FLMysEvTP1t2MStG0QS420nDi4KJ1fvcfhVgTvWk1DmdPcj3f8H_K5_TJV3---95SxTVFi1DU7whEjI1UzXmRkYODw"
+    access_token = "AAIgODcyMWViYTgzMzk0M2NjZDI5ZDZlNzRmYjBiZDkzN2a_idTIkt49KCQMuFI1tTewhicsh4muwQoPlY5vp11ldtP_QZ9fPXA6pFKyruhyjvPhWT63z1OX27Qg5CLLA1_h6SQVgesV4pITRKZUfAXjJuAftx0-Z6uwsVwY0Ow2F0Q"
     url = "https://api.connect.stanbicbank.co.ke/api/sandbox/pesalink-payments/"
 
     payload = {
